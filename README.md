@@ -45,17 +45,6 @@ Dataset statistics may differ across releases and preprocessing pipelines. Alway
 | Root-cause Hit at K, Recall at K, MRR, or NDCG | Ranked variables or components and root-cause labels | Quality of anomaly localization or root-cause ranking | Use standard ranking definitions and document multi-cause handling | [scikit-learn ranking metrics](https://scikit-learn.org/stable/modules/model_evaluation.html#multilabel-ranking-metrics) | Datasets with variable-level or component-level root-cause annotations | Do not report localization metrics when only timestamp-level anomaly labels are available. State how ties and multiple causes are handled. |
 | Point-adjusted F1 | Binary predictions and anomaly ranges | Counts an entire labeled range as detected after one hit | [Towards a Rigorous Evaluation of Time-Series Anomaly Detection](https://doi.org/10.1609/aaai.v36i7.20709) | Available in several TSAD repositories | Historical comparison only | Do not use it as the sole or primary metric. It can substantially overestimate weak detections, and threshold selection on test labels adds further leakage. |
 
-## Minimum reporting protocol
-
-1. Report at least one threshold-independent PR-based metric, such as AUPRC or VUS-PR.
-2. Report one transparent thresholded metric, such as raw point-wise F1, without point adjustment.
-3. Add an event-aware metric when ground-truth anomalies are intervals.
-4. Select thresholds using training data, validation data, or a stated unsupervised rule, not test labels.
-5. State dataset version, retained variables, sampling rate, split, normalization, window size, and label processing.
-6. State whether results are macro-averaged per entity, micro-averaged over all timestamps, or computed after concatenation.
-7. Report results over multiple random seeds when model training is stochastic.
-8. For online systems, report detection latency and false alarms per time unit.
-
 ## Contributing
 
 Contributions are welcome through pull requests or issues. For a new dataset, include an original or authoritative data link, a primary reference, access or license information, and a reproducibility note. For a metric, include its definition or paper, an implementation when available, expected inputs, and known limitations.
